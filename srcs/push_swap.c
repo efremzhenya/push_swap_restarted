@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 19:13:58 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/11 00:14:07 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/15 22:43:25 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,44 @@ int main(int argc, char **argv)
 		free_stack(&stack_a);
 		return (write(1, "Error\n", 6));
 	};
+	set_indexes(&stack_a, argc - 1);
+	free_stack(&stack_a);
 	return (0);
+}
+
+void set_indexes(t_elem **stack_a, int count)
+{
+	int		arr[count];
+	size_t	i;
+	size_t	j;
+	int		value;
+	t_elem	*tmp;
+
+	i = 0;
+	tmp = *stack_a;
+	arr[i++] = tmp->value;
+	while ((tmp = tmp->next))
+		arr[i++] = tmp->value;
+	for (j = count; j > 1; j--)
+	{
+		for (i = 0; i < j - 1; i++)
+		{
+			if (arr[i] > arr[i + 1])
+			{
+				value = arr[i];
+				arr[i] = arr[i + 1];
+				arr[i+1] = value;
+			}
+		}
+	};
+	tmp = *stack_a;
+	while (tmp)
+	{
+		i = 0;
+		while (tmp->value != arr[i++]);
+		tmp->index = --i;
+		tmp = tmp->next;
+	}
 }
 
 int validate_args(int argc, char **argv, t_elem **stack_a)
