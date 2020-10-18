@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 19:13:58 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/15 22:43:25 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/18 20:06:27 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,58 +17,45 @@ int main(int argc, char **argv)
 	t_elem	*stack_a;
 	t_elem	*stack_b;
 	t_main	*main;
+	t_cmd	*cmds;
 
-	if (!validate_args(argc, argv, &stack_a))
+	main = (t_main *)malloc(sizeof(t_main));
+	if (!(main->mode = validate_args(argc, argv, &stack_a)))
 	{
 		free_stack(&stack_a);
+		free(main);
 		return (write(1, "Error\n", 6));
+	}
+	else if (is_sorted(&stack_a))
+	{
+		free_stack(&stack_a);
+		free(main);
+		return (0);
 	};
-	set_indexes(&stack_a, argc - 1);
+	main->count = (main->mode > 1 ? argc - 2 : argc - 1);
+	set_indexes(&stack_a, main->count);
+	start_ps(&stack_a, &stack_b, &main, &cmds);
 	free_stack(&stack_a);
 	return (0);
 }
 
-void set_indexes(t_elem **stack_a, int count)
+int	init(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd ** cmds)
 {
-	int		arr[count];
-	size_t	i;
-	size_t	j;
-	int		value;
-	t_elem	*tmp;
-
-	i = 0;
-	tmp = *stack_a;
-	arr[i++] = tmp->value;
-	while ((tmp = tmp->next))
-		arr[i++] = tmp->value;
-	for (j = count; j > 1; j--)
-	{
-		for (i = 0; i < j - 1; i++)
-		{
-			if (arr[i] > arr[i + 1])
-			{
-				value = arr[i];
-				arr[i] = arr[i + 1];
-				arr[i+1] = value;
-			}
-		}
-	};
-	tmp = *stack_a;
-	while (tmp)
-	{
-		i = 0;
-		while (tmp->value != arr[i++]);
-		tmp->index = --i;
-		tmp = tmp->next;
-	}
+	*cmds = (t_cmd *)malloc(sizeof(t_cmd));
+	if (!(*stack_b = (t_elem *)malloc(sizeof(t_elem))))
+		return (0);
+	return (1);
 }
 
 int validate_args(int argc, char **argv, t_elem **stack_a)
 {
 	int num;
+	int mode;
 
 	if (argc < 1)
 		return (0);
+	if ((mode = is_mode_on(*argv)) > 0)
+		argv++;
 	for (size_t i = 1; i < argc; i++)
 	{
 		argv++;
@@ -84,7 +71,12 @@ int validate_args(int argc, char **argv, t_elem **stack_a)
 			add_elem(stack_a, new_elem(num));
 		}
 	}
-	return (1);
+	return (mode ? mode : 1);
+}
+int is_mode_on(char *argv)
+{
+	//not imlemented
+	return (0);
 }
 
 int validate_num(char *argv)

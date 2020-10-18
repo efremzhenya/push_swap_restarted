@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 22:09:53 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/10 23:59:18 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/18 19:20:37 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,23 @@ int		is_contain(t_elem **stack, int num)
 			return (1);
 		tail = tail->next;
 	}
-	return(0);
+	return (0);
+}
+
+int		is_sorted(t_elem **stack)
+{
+	t_elem	*tail;
+
+	if (!stack)
+		return (0);
+	else if (!((*stack)->next))
+		return (1);
+	tail = *stack;
+	while (tail->next)
+	{
+		if (tail->value > (tail->next)->value)
+			return (0);
+		tail = tail->next;
+	}
+	return (1);
 }
