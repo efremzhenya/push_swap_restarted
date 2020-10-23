@@ -6,7 +6,7 @@
 #    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/27 16:30:25 by lseema            #+#    #+#              #
-#    Updated: 2020/10/18 20:00:12 by lseema           ###   ########.fr        #
+#    Updated: 2020/10/23 21:44:57 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CC = gcc -g
 SRC_DIR = srcs/
 LIBFT_DIR = libft/
 OBJ_DIR = obj/
-PS_SRCS = push_swap.c validation.c lst.c cleaners.c ps_helpers.c ps_sort.c
+PS_SRCS = push_swap.c validation.c lst_management.c cmd_management.c cleaners.c\
+	ps_helpers.c ps_sort.c instructions.c
 
 PS_OBJ = ${PS_SRCS:c=o}
 

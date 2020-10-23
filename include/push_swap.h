@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:51:51 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/18 20:08:20 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/24 01:45:51 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,20 @@ t_elem		*new_elem(int value);
 void		add_elem(t_elem **stack, t_elem *elem);
 int			is_contain(t_elem **stack, int num);
 void		free_stack(t_elem **stack);
+void		free_cmds(t_cmd **cmds);
 void		set_indexes(t_elem **stack_a, int count);
 int			is_sorted(t_elem **stack);
 size_t		get_length(t_elem **stack);
 int			is_mode_on(char *argv);
 int			init(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd ** cmds);
 int			start_ps(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd **cmds);
+void		add_cmd(t_cmd **cmds, t_cmd *cmd);
+t_cmd		*new_cmd(char *c);
+t_cmd		*do_cmd(char *cmd, t_elem **stack_a, t_elem **stack_b);
+void		swap(t_elem **stack);
+void		rotate(t_elem **stack);
+void		rev_rotate(t_elem **stack);
+void		push(t_elem **stack2, t_elem **stack1);
+void		sort_three_num(t_elem **stack_a, t_elem **stack_b, t_cmd **cmds);
 
 #endif
