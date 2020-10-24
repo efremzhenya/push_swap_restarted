@@ -1,11 +1,5 @@
-obj/push_swap.o
-obj/validation.o
+obj/*
 push_swap
-obj/cmd_management.o
-obj/instructions.o
-obj/lst_management.o
-obj/ps_helpers.o
-obj/ps_sort.o
-obj/validation.o
 push_swap.dSYM/Contents/Info.plist
-.vscode/launch.json
+.vscode/*
+libft/libft.a
