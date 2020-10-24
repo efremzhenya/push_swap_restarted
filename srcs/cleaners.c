@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 00:07:15 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/24 00:34:05 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/24 22:26:49 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,6 @@ void	free_stack(t_elem **stack)
 			*stack = tail;
 			tail = tail->next;
 			free(*stack);
-		}
-		free(tail);
-	}
-}
-
-void	free_cmds(t_cmd **cmds)
-{
-	t_cmd *tail;
-
-	if (*cmds)
-	{
-		tail = *cmds;
-		while (tail->next)
-		{
-			*cmds = tail;
-			tail = tail->next;
-			free(*cmds);
 		}
 		free(tail);
 	}
