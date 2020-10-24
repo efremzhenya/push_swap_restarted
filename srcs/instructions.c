@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 20:53:09 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/24 01:34:20 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/25 00:07:27 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	swap(t_elem **stack)
 	temp_1 = *stack;
 	temp_2 = (*stack)->next;
 	temp_1->next = temp_2->next;
+	if (temp_2->next)
+		temp_2->next->prev = temp_1;
 	*stack = temp_2;
 	(*stack)->next = temp_1;
 	temp_1->prev = temp_2;
@@ -51,12 +53,41 @@ void	swap(t_elem **stack)
 
 void	rotate(t_elem **stack)
 {
+	t_elem *first;
+	t_elem *tail;
 
+	if (stack && *stack && (*stack)->next)
+	{
+		first = *stack;
+		*stack = (*stack)->next;
+		tail = *stack;
+		tail->prev = NULL;
+		while (tail->next)
+			tail = tail->next;
+		first->prev = tail;
+		first->next = NULL;
+		tail->next = first;
+	}
 }
 
 void	rev_rotate(t_elem **stack)
 {
+	t_elem *last;
+	t_elem *tail;
 
+	if (stack && *stack && (*stack)->next)
+	{
+		tail = *stack;
+		while (tail->next)
+			tail = tail->next;
+		last = tail;
+		tail = tail->prev;
+		tail->next = NULL;
+		last->prev = NULL;
+		last->next = *stack;
+		(*stack)->prev = last;
+		*stack = last;
+	}
 }
 
 void	push(t_elem **stack2, t_elem **stack1)
