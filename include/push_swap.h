@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:51:51 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/24 01:45:51 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/24 22:26:20 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void		swap(t_elem **stack);
 void		rotate(t_elem **stack);
 void		rev_rotate(t_elem **stack);
 void		push(t_elem **stack2, t_elem **stack1);
-void		sort_three_num(t_elem **stack_a, t_elem **stack_b, t_cmd **cmds);
+void		sort_stack_of_3(t_elem **stack_a, t_cmd **cmds);
+void		refactor_cmds(t_cmd **cmds);
+void		print_cmds(t_cmd **cmds);
 
 #endif
