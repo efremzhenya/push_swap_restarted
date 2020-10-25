@@ -3,3 +3,12 @@ push_swap
 push_swap.dSYM/Contents/Info.plist
 .vscode/*
 libft/libft.a
+PNGS/BAD_PS.png
+PNGS/GOOD_PS.png
+PNGS/JUST1-100.png
+PNGS/JUST5.png
+PNGS/OKAY_PS.png
+PNGS/SDL_PS.png
+PNGS/USAGE.png
+test.sh
+.DS_Store
