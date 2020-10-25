@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 21:54:25 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/23 21:23:11 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/25 18:31:20 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,20 @@ size_t		get_length(t_elem **stack)
 	return count;
 }
 
+int		get_min_index(t_elem **stack_a)
+{
+	t_elem	*tmp;
+	int		min;
+
+	if (!stack_a || !*stack_a)
+		return -1;
+	tmp = (*stack_a)->next;
+	min = (*stack_a)->index;
+	while (tmp)
+	{
+		if (tmp->index < min)
+			min = tmp->index;
+		tmp = tmp->next;
+	}
+	return min;
+}
