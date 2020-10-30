@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 21:54:25 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/25 18:31:20 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/31 00:51:40 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ size_t		get_length(t_elem **stack)
 	t_elem *tail;
 	size_t count;
 
-	if (!stack)
+	if (!stack || !*stack)
 		return (0);
 	tail = *stack;
 	count = 1;
