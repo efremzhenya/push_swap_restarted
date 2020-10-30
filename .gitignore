@@ -12,3 +12,6 @@ PNGS/SDL_PS.png
 PNGS/USAGE.png
 test.sh
 .DS_Store
+checker.dSYM/Contents/Info.plist
+checker.dSYM/Contents/Resources/DWARF/checker
+checker
