@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:51:51 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/25 18:47:14 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/31 01:55:47 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			init(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd ** cmds);
 int			start_ps(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd **cmds);
 void		add_cmd(t_cmd **cmds, t_cmd *cmd);
 t_cmd		*new_cmd(char *c);
-t_cmd		*do_cmd(char *cmd, t_elem **stack_a, t_elem **stack_b);
+t_cmd		*do_cmd(char *cmd, t_elem **stack_a, t_elem **stack_b, int allocate_cmd);
 void		swap(t_elem **stack);
 void		rotate(t_elem **stack);
 void		rev_rotate(t_elem **stack);
@@ -66,5 +66,6 @@ void		print_cmds(t_cmd **cmds);
 int			get_min_index(t_elem **stack_a);
 void		sort_stack_of_5(t_elem **stack_a, t_elem **stack_b, t_cmd **cmds);
 void		sort_stack_of_4(t_elem **stack_a, t_elem **stack_b, t_cmd **cmds);
+void		read_cmds(t_elem **stack_a, t_elem **stack_b);
 
 #endif
