@@ -6,13 +6,13 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 20:53:09 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/25 00:07:27 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/31 01:54:08 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-t_cmd	*do_cmd(char *cmd, t_elem **stack_a, t_elem **stack_b)
+t_cmd	*do_cmd(char *cmd, t_elem **stack_a, t_elem **stack_b, int allocate_cmd)
 {
 	void (*function) (t_elem **stack);
 
@@ -30,7 +30,7 @@ t_cmd	*do_cmd(char *cmd, t_elem **stack_a, t_elem **stack_b)
 	}
 	else
 		function ((cmd[1] == 'a' || cmd[2] == 'a') ? stack_a : stack_b);
-	return new_cmd(cmd);
+	return allocate_cmd ? new_cmd(cmd) : NULL;
 }
 
 void	swap(t_elem **stack)
@@ -94,6 +94,8 @@ void	push(t_elem **stack2, t_elem **stack1)
 {
 	t_elem	*tail1;
 
+	if (!*stack1)
+		return ;
 	tail1 = (*stack1);
 	*stack1 = (*stack1)->next;
 	if (*stack1)
