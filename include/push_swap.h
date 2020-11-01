@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:51:51 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/31 01:55:47 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/01 06:36:39 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 
 typedef struct			s_elem
 {
-	long long			value;
+	int					value;
 	int					index;
 	int					flag;
+	int					sorted;
 	struct s_elem		*prev;
 	struct s_elem		*next;
 }						t_elem;
@@ -27,8 +28,9 @@ typedef struct			s_elem
 typedef struct			s_main
 {
 	size_t				count;
+	size_t				max;
 	int					mode;
-	int					max;
+	int					next;
 	int					flag;
 }						t_main;
 
@@ -67,5 +69,6 @@ int			get_min_index(t_elem **stack_a);
 void		sort_stack_of_5(t_elem **stack_a, t_elem **stack_b, t_cmd **cmds);
 void		sort_stack_of_4(t_elem **stack_a, t_elem **stack_b, t_cmd **cmds);
 void		read_cmds(t_elem **stack_a, t_elem **stack_b);
+void		main_sort(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd **cmds);
 
 #endif

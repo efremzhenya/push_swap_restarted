@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 21:54:25 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/31 00:51:40 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/31 05:41:22 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_elem		*new_elem(int value)
 	elem->value = value;
 	elem->index = 0;
 	elem->flag = 0;
+	elem->sorted = 0;
 	elem->next = NULL;
 	elem->prev = NULL;
 	return (elem);

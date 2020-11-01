@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 19:29:13 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/31 01:57:24 by lseema           ###   ########.fr       */
+/*   Updated: 2020/10/31 21:44:52 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int		start_ps(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd **cmds)
 		sort_stack_of_5(stack_a, stack_b, cmds);
 	else
 	{
-		//main_sort
+		(*main)->next = 1;
+		(*main)->flag = 0;
+		main_sort(stack_a, stack_b, main, cmds);
 		refactor_cmds(cmds);
 	}
 

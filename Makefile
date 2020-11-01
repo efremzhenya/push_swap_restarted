@@ -6,7 +6,7 @@
 #    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/27 16:30:25 by lseema            #+#    #+#              #
-#    Updated: 2020/10/31 03:01:04 by lseema           ###   ########.fr        #
+#    Updated: 2020/11/01 06:14:17 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ SRC_DIR = srcs/
 LIBFT_DIR = libft/
 OBJ_DIR = obj/
 PS_SRCS = push_swap.c validation.c lst_management.c cmd_management.c cleaners.c\
-	ps_helpers.c ps_sort.c instructions.c mods.c
+	ps_helpers.c ps_sort.c instructions.c mods.c main_sort.c
 CHECKER_SRCS = checker.c validation.c lst_management.c cmd_management.c cleaners.c\
-	instructions.c mods.c
+	instructions.c mods.c ps_helpers.c
 
 PS_OBJ = ${PS_SRCS:c=o}
 CHECKER_OBJ = ${CHECKER_SRCS:c=o}

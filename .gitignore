@@ -15,3 +15,4 @@ test.sh
 checker.dSYM/Contents/Info.plist
 checker.dSYM/Contents/Resources/DWARF/checker
 checker
+pyviz.py
