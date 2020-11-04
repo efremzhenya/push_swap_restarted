@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 04:12:23 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/01 05:57:55 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/04 21:33:20 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	main_sort(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd **cmds)
 	// 	tail = tail->sorted = 1;
 	// }
 
-
 	while (!is_sorted(stack_a))
 	{
 		i = 0;
@@ -55,31 +54,57 @@ void	main_sort(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd **cmds)
 			add_cmd(cmds, do_cmd("ra", stack_a, stack_b, 1));
 			(*main)->next++;
 		}
-		mid = ((*main)->max - (*main)->next) / 2 + (*main)->next;
-		(*main)->flag++;
-		len_b = (*main)->max - (*main)->next + 1;
-		while (len_b > i && (*main)->max - mid + 1 > get_length(stack_b))
+		if ((*stack_a)->flag > 0 && (*stack_a)->sorted == 0)
 		{
-			if ((*stack_a)->index + 1 <= mid)
-				add_cmd(cmds, do_cmd("pb", stack_a, stack_b, 1));
-			else
-				add_cmd(cmds, do_cmd("ra", stack_a, stack_b, 1));
-			i++;
+			(*main)->max = (*stack_a)->index + 1;
+			while ((*stack_a)->sorted == 0 && (*stack_a)->flag > 0)
+			{
+				if ((*stack_a)->index + 1 == (*main)->next || (*stack_a)->next->index + 1 == (*main)->next)
+				{
+					while ((*stack_a)->index + 1 == (*main)->next || (*stack_a)->next->index + 1 == (*main)->next)
+					{
+						if ((*stack_a)->next->index + 1 == (*main)->next)
+							add_cmd(cmds, do_cmd("sa", stack_a, stack_b, 1));
+						(*stack_a)->sorted = 1;
+						add_cmd(cmds, do_cmd("ra", stack_a, stack_b, 1));
+						(*main)->next++;
+					}
+				}
+				else
+				{
+					(*main)->max = (*stack_a)->index + 1 > (*main)->max ? (*stack_a)->index + 1 : (*main)->max;
+					add_cmd(cmds, do_cmd("pb", stack_a, stack_b, 1));
+				}
+			}
+		}
+		else
+		{
+			mid = ((*main)->max - (*main)->next) / 2 + (*main)->next;
+			(*main)->flag++;
+			len_b = (*main)->max - (*main)->next + 1;
+			while (len_b > i && (*main)->max - mid + 1 > get_length(stack_b))
+			{
+				if ((*stack_a)->index + 1 <= mid)
+					add_cmd(cmds, do_cmd("pb", stack_a, stack_b, 1));
+				else
+					add_cmd(cmds, do_cmd("ra", stack_a, stack_b, 1));
+				i++;
+			}
+
+			i = i - get_length(stack_b);
+			while ((*main)->flag > 1 && i--)
+			{
+				tail = *stack_b;
+				while (tail && tail->next)
+					tail = tail->next;
+				if (tail->index + 1 <= mid - (get_length(stack_b) / 2))
+					add_cmd(cmds, do_cmd("rrr", stack_a, stack_b, 1));
+				else
+					add_cmd(cmds, do_cmd("rra", stack_a, stack_b, 1));
+			}
+			(*main)->max = mid;
 		}
 
-		i = i - get_length(stack_b);
-		while ((*main)->flag > 1 && i--)
-		{
-			tail = *stack_b;
-			while (tail && tail->next)
-				tail = tail->next;
-			if (tail->index + 1 <= mid - (get_length(stack_b) / 2))
-				add_cmd(cmds, do_cmd("rrr", stack_a, stack_b, 1));
-			else
-				add_cmd(cmds, do_cmd("rra", stack_a, stack_b, 1));
-		}
-
-		(*main)->max = mid;
 		while (get_length(stack_b) > 0)
 		{
 			len_b = get_length(stack_b);
@@ -103,6 +128,41 @@ void	main_sort(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd **cmds)
 				else
 					add_cmd(cmds, do_cmd("rb", stack_a, stack_b, 1));
 				i++;
+			}
+
+			//new
+			while ((*stack_a)->flag > 0 && (*stack_a)->sorted == 0)
+			{
+				while ((*stack_a)->sorted == 0 && (*stack_a)->flag > 0)
+				{
+					if ((*stack_a)->index + 1 == (*main)->next || (*stack_a)->next->index + 1 == (*main)->next)
+					{
+						while ((*stack_a)->index + 1 == (*main)->next || (*stack_a)->next->index + 1 == (*main)->next)
+						{
+							if ((*stack_a)->next->index + 1 == (*main)->next)
+								add_cmd(cmds, do_cmd("sa", stack_a, stack_b, 1));
+							(*stack_a)->sorted = 1;
+							add_cmd(cmds, do_cmd("ra", stack_a, stack_b, 1));
+							(*main)->next++;
+						}
+					}
+					else
+					{
+						add_cmd(cmds, do_cmd("pb", stack_a, stack_b, 1));
+					}
+				}
+				while ((*stack_b)->flag > 0)
+				{
+					add_cmd(cmds, do_cmd("pa", stack_a, stack_b, 1));
+					while ((*stack_a)->index + 1 == (*main)->next || (*stack_a)->next->index + 1 == (*main)->next)
+					{
+						if ((*stack_a)->next->index + 1 == (*main)->next)
+							add_cmd(cmds, do_cmd("sa", stack_a, stack_b, 1));
+						(*stack_a)->sorted = 1;
+						add_cmd(cmds, do_cmd("ra", stack_a, stack_b, 1));
+						(*main)->next++;
+					}
+				}
 			}
 		}
 	}
