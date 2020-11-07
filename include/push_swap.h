@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:51:51 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/01 06:36:39 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/07 05:01:23 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct			s_main
 	int					mode;
 	int					next;
 	int					flag;
+	int					any_sorted;
 }						t_main;
 
 typedef struct			s_cmd
@@ -70,5 +71,12 @@ void		sort_stack_of_5(t_elem **stack_a, t_elem **stack_b, t_cmd **cmds);
 void		sort_stack_of_4(t_elem **stack_a, t_elem **stack_b, t_cmd **cmds);
 void		read_cmds(t_elem **stack_a, t_elem **stack_b);
 void		main_sort(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd **cmds);
+int			get_max_index(t_elem **stack_a, int flag);
+void		check_next(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd **cmds);
+size_t		get_length_flag(t_elem **stack, int flag);
+int			get_max_ind(t_elem **stack_a);
+int			get_flag(t_elem **stack_a, int	index);
+void		asc_sort_of_3(t_elem **stack_b, t_cmd **cmds);
+void	check_next_b(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd **cmds, int len_b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 21:54:25 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/31 05:41:22 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/05 00:50:33 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,24 @@ size_t		get_length(t_elem **stack)
 	return count;
 }
 
+size_t		get_length_flag(t_elem **stack, int flag)
+{
+	t_elem *tail;
+	size_t count;
+
+	if (!stack || !*stack)
+		return (0);
+	tail = *stack;
+	count = 0;
+	while (tail)
+	{
+		if (tail->flag == flag)
+			count++;
+		tail = tail->next;
+	}
+	return count;
+}
+
 int		get_min_index(t_elem **stack_a)
 {
 	t_elem	*tmp;
@@ -76,4 +94,59 @@ int		get_min_index(t_elem **stack_a)
 		tmp = tmp->next;
 	}
 	return min;
+}
+
+int		get_max_ind(t_elem **stack_a)
+{
+	t_elem	*tmp;
+	int		max;
+
+	if (!stack_a || !*stack_a)
+		return -1;
+	tmp = (*stack_a)->next;
+	max = (*stack_a)->index;
+	while (tmp)
+	{
+		if (tmp->index > max)
+			max = tmp->index;
+		tmp = tmp->next;
+	}
+	return max;
+}
+
+int		get_max_index(t_elem **stack_a, int flag)
+{
+	t_elem	*tmp;
+	int		max;
+
+	if (!stack_a || !*stack_a)
+		return -1;
+	tmp = (*stack_a)->next;
+	while (tmp && tmp->flag != flag)
+		tmp = tmp->next;
+	if (!tmp)
+		return -1;
+	max = tmp->index;
+	while (tmp)
+	{
+		if (tmp->index > max)
+			max = tmp->index;
+		tmp = tmp->next;
+	}
+	return max;
+}
+
+int		get_flag(t_elem **stack_a, int	index)
+{
+	t_elem	*tmp;
+	index--;
+
+	if (!stack_a || !*stack_a)
+		return -1;
+	tmp = (*stack_a)->next;
+	while (tmp && tmp->index != index)
+		tmp = tmp->next;
+	if (!tmp)
+		return -1;
+	return tmp->flag;
 }
