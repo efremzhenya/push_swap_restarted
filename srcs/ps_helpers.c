@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 20:17:43 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/15 06:35:21 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 07:09:18 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	set_indexes_part2(t_elem **stack_a, int *arr)
 		i = 0;
 		while (tmp->value != arr[i])
 			i++;
-		tmp->index = --i;
+		tmp->index = i;
 		tmp = tmp->next;
 	}
 }
