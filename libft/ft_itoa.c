@@ -3,55 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:45:16 by lseema            #+#    #+#             */
-/*   Updated: 2020/01/25 18:07:24 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 15:43:32 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	cap(int n)
+static int		cap(int n, int minus)
 {
-	size_t i;
+	int len;
 
-	i = 1;
-	if (n < 0)
-		i++;
-	while (n / 10)
-	{
-		n = n / 10;
-		i++;
-	}
-	return (i);
+	len = 1;
+	while ((n /= 10))
+		len++;
+	return (minus + len);
 }
 
 char			*ft_itoa(int n)
 {
-	long int	i;
-	char		*str;
-	int			flag;
+	char	*str;
+	int		len;
+	int		znak;
+	int		dig;
 
-	flag = 0;
-	i = cap(n);
-	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	str[i] = '\0';
-	if (n < 0)
+	znak = (n < 0) ? 1 : 0;
+	len = cap(n, znak);
+	if ((str = ft_strnew(len)))
 	{
-		if (n == -2147483648)
+		str[len--] = '\0';
+		while (len >= znak)
 		{
-			str[--i] = '8';
-			n = -214748364;
+			dig = n % 10;
+			str[len--] = (dig < 0 ? dig * -1 : dig) + '0';
+			n /= 10;
 		}
-		n = -1 * n;
-		flag = 1;
-	}
-	while (i-- >= 0)
-	{
-		str[i] = ((i == 0) && (flag == 1)) ? '-' : (n % 10) + '0';
-		n = n / 10;
+		if (znak)
+			str[0] = '-';
 	}
 	return (str);
 }

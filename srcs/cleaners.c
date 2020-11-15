@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 00:07:15 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/15 06:24:01 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 07:34:47 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	free_all(t_elem **a, t_elem **b, t_cmd **cmds, t_main **main)
 		free_stack(b);
 	if (*cmds)
 		free_cmds(cmds);
+	if (!main)
+		return ;
 	if (*main)
 		free(*main);
 }

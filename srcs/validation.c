@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 22:09:53 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/15 06:37:00 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 16:36:58 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		is_sorted(t_elem **stack)
 	return (1);
 }
 
-int		validate_args(int count, char **argv, t_elem **stack_a)
+int		validate_args(int count, char **argv, t_elem **stack_a, int checker)
 {
 	int		num;
 	int		mode;
@@ -53,9 +53,9 @@ int		validate_args(int count, char **argv, t_elem **stack_a)
 		argv++;
 	if (count == 2)
 		return (validate_string(*argv, stack_a));
-	if ((mode = is_mode_on(*argv)) > 0)
+	if ((mode = count > 0 && checker ? is_mode_on(*argv) : 0) > 0)
 		argv++;
-	if (!*argv)
+	if (!*argv || ft_strlen(*argv) == 0)
 		return (0);
 	while (*argv)
 	{
@@ -78,7 +78,7 @@ int		validate_string(char *str, t_elem **stack_a)
 	int		result;
 
 	temp = ft_strsplit(str, ' ');
-	result = validate_args(-1, temp, stack_a);
+	result = !temp ? 0 : validate_args(-1, temp, stack_a, 0);
 	i = 0;
 	while (temp[i])
 		free(temp[i++]);

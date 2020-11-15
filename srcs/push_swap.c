@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 19:13:58 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/15 06:24:56 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 15:57:57 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ int		main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	cmds = NULL;
-	if (argc <= 1 || !argv || !(main->mode = validate_args(argc, argv, &a)))
+	if (argc <= 1 || !argv || !(main->mode = validate_args(argc, argv, &a, 0)))
+	{
+		free_all(&a, &b, &cmds, &main);
 		return (error());
+	}
 	if (argc == -1 || is_sorted(&a))
 	{
 		free_all(&a, &b, &cmds, &main);

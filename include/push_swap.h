@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:51:51 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/15 06:58:33 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 15:23:22 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef	struct		s_cmd
 }					t_cmd;
 
 int					init_main(t_main **main);
-int					validate_args(int count, char **argv, t_elem **stack_a);
+int					validate_args(int c, char **argv, t_elem **a, int chckr);
 int					validate_num(char *argv);
 t_elem				*new_elem(int value);
 int					add_elem(t_elem **stack, t_elem *elem);
@@ -71,7 +71,7 @@ void				sort_stack_of_3(t_elem **stack_a, t_cmd **cmds);
 void				sort_stack_of_5(t_elem **a, t_elem **b, t_cmd **cmds);
 void				sort_stack_of_4(t_elem **a, t_elem **b, t_cmd **cmds);
 void				asc_sort_of_3(t_elem **stack_b, t_cmd **cmds);
-void				read_cmds(t_elem **stack_a, t_elem **stack_b);
+void				read_cmds(t_elem **stack_a, t_elem **stack_b, int mode);
 void				main_sort(t_elem **s, t_elem **b, t_main **m, t_cmd **c);
 void				check_next(t_elem **a, t_elem **b, t_main **m, t_cmd **c);
 void				check_next_b(t_elem **a, t_elem **b, t_main **m, t_cmd **c);
@@ -82,5 +82,7 @@ void				part_a(t_elem **a, t_elem **b, t_main **main, t_cmd **cmds);
 void				part_b(t_elem **a, t_elem **b, t_main **main, t_cmd **cmds);
 void				part_c(t_elem **a, t_elem **b, t_main **main, t_cmd **cmds);
 void				part_d(t_elem **a, t_elem **b, t_main **main, t_cmd **cmds);
+void				draw(t_elem **stack_a, t_elem **stack_b);
+void				draw_stack(t_elem *elem);
 
 #endif
