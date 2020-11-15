@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 20:53:09 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/31 01:54:08 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 06:36:29 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ t_cmd	*do_cmd(char *cmd, t_elem **stack_a, t_elem **stack_b, int allocate_cmd)
 		function = (cmd[2] == '\0') ? rotate : rev_rotate;
 	if (function == NULL)
 		cmd[1] == 'a' ? push(stack_a, stack_b) : push(stack_b, stack_a);
-	else if (cmd[1] == 's' || cmd[2] == 'r' || (cmd[1] == 'r' && cmd[2] == '\0'))
+	else if (cmd[1] == 's' || cmd[2] == 'r'
+		|| (cmd[1] == 'r' && cmd[2] == '\0'))
 	{
 		function(stack_a);
 		function(stack_b);
 	}
 	else
-		function ((cmd[1] == 'a' || cmd[2] == 'a') ? stack_a : stack_b);
-	return allocate_cmd ? new_cmd(cmd) : NULL;
+		function((cmd[1] == 'a' || cmd[2] == 'a') ? stack_a : stack_b);
+	return (allocate_cmd ? new_cmd(cmd) : NULL);
 }
 
 void	swap(t_elem **stack)
@@ -39,7 +40,7 @@ void	swap(t_elem **stack)
 	t_elem		*temp_2;
 
 	if (get_length(stack) < 2)
-		return;
+		return ;
 	temp_1 = *stack;
 	temp_2 = (*stack)->next;
 	temp_1->next = temp_2->next;
@@ -100,7 +101,6 @@ void	push(t_elem **stack2, t_elem **stack1)
 	*stack1 = (*stack1)->next;
 	if (*stack1)
 		(*stack1)->prev = NULL;
-
 	if (!*stack2)
 	{
 		tail1->next = NULL;

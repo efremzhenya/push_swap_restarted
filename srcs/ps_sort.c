@@ -6,31 +6,32 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 19:29:13 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/07 04:18:00 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 05:58:19 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int		start_ps(t_elem **stack_a, t_elem **stack_b, t_main **main, t_cmd **cmds)
+int		start_ps(t_elem **a, t_elem **b, t_main **main, t_cmd **cmds)
 {
 	if ((*main)->count == 2)
-		add_cmd(cmds, do_cmd("sa", stack_a, stack_b, 1));
+		add_cmd(cmds, do_cmd("sa", a, b, 1));
 	else if ((*main)->count == 3)
-		sort_stack_of_3(stack_a, cmds);
+		sort_stack_of_3(a, cmds);
 	else if ((*main)->count == 4)
-		sort_stack_of_4(stack_a, stack_b, cmds);
+		sort_stack_of_4(a, b, cmds);
 	else if ((*main)->count == 5)
-		sort_stack_of_5(stack_a, stack_b, cmds);
+		sort_stack_of_5(a, b, cmds);
 	else
 	{
-		(*main)->next = 1;
-		(*main)->flag = 0;
-		(*main)->any_sorted = 0;
-		main_sort(stack_a, stack_b, main, cmds);
+		if ((*main)->count >= 400)
+			(*main)->koef = 18;
+		else
+			(*main)->koef = (*main)->count >= 100 ? 5 : 1;
+		while (!is_sorted(a) || get_length(b) > 0)
+			main_sort(a, b, main, cmds);
 		refactor_cmds(cmds);
 	}
-
 	print_cmds(cmds);
 	return (1);
 }
@@ -56,9 +57,10 @@ void	sort_stack_of_3(t_elem **stack_a, t_cmd **cmds)
 	}
 	else if (one > two && two < three && three < one)
 		add_cmd(cmds, do_cmd("ra", stack_a, NULL, 1));
-	else
-		add_cmd(cmds, do_cmd((one < two && two > three && three < one)
-			? "rra" : "sa", stack_a, NULL, 1));
+	else if (one < two && two > three && three < one)
+		add_cmd(cmds, do_cmd("rra", stack_a, NULL, 1));
+	else if (one > two && two < three && three > one)
+		add_cmd(cmds, do_cmd("sa", stack_a, NULL, 1));
 }
 
 void	sort_stack_of_4(t_elem **stack_a, t_elem **stack_b, t_cmd **cmds)

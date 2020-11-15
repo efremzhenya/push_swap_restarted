@@ -6,41 +6,48 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 19:13:58 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/31 00:24:52 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 06:24:56 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int main(int argc, char **argv)
+int		error(void)
 {
-	t_elem	*stack_a;
-	t_elem	*stack_b;
+	write(1, "Error\n", 6);
+	return (0);
+}
+
+int		init_main(t_main **main)
+{
+	if (!(*main = (t_main *)malloc(sizeof(t_main))))
+		return (0);
+	(*main)->next = 1;
+	(*main)->flag = 0;
+	(*main)->any_sorted = 0;
+	return (1);
+}
+
+int		main(int argc, char **argv)
+{
+	t_elem	*a;
+	t_elem	*b;
 	t_main	*main;
 	t_cmd	*cmds;
 
-	main = (t_main *)malloc(sizeof(t_main));
-	stack_a = NULL;
-	stack_b = NULL;
+	init_main(&main);
+	a = NULL;
+	b = NULL;
 	cmds = NULL;
-	if (!(main->mode = validate_args(argc, argv, &stack_a)))
+	if (argc <= 1 || !argv || !(main->mode = validate_args(argc, argv, &a)))
+		return (error());
+	if (argc == -1 || is_sorted(&a))
 	{
-		free_stack(&stack_a);
-		free(main);
-		return (write(1, "Error\n", 6));
-	}
-	else if (is_sorted(&stack_a))
-	{
-		free_stack(&stack_a);
-		free(main);
+		free_all(&a, &b, &cmds, &main);
 		return (0);
-	};
-	main->count = (main->mode > 1 ? argc - 2 : argc - 1);
-	set_indexes(&stack_a, main->count);
-	start_ps(&stack_a, &stack_b, &main, &cmds);
-	free_stack(&stack_a);
-	free_stack(&stack_b);
-	free_cmds(&cmds);
-	free(main);
+	}
+	set_indexes(&a, main->count = get_length(&a), 0);
+	start_ps(&a, &b, &main, &cmds);
+	free_all(&a, &b, &cmds, &main);
 	return (0);
 }

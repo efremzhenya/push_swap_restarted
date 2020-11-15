@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 21:18:11 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/24 22:26:56 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 06:28:16 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ t_cmd	*new_cmd(char *c)
 	cmd->cmd = c;
 	cmd->next = NULL;
 	cmd->prev = NULL;
-	return cmd;
+	return (cmd);
 }
 
-void		add_cmd(t_cmd **cmds, t_cmd *cmd)
+void	add_cmd(t_cmd **cmds, t_cmd *cmd)
 {
 	t_cmd	*tail;
 
 	if (!cmds || !cmd)
-		return;
+		return ;
 	if (!*cmds)
 		*cmds = cmd;
 	else
@@ -49,24 +49,24 @@ void	refactor_cmds(t_cmd **cmds)
 	int		len2;
 
 	if (!cmds || !*cmds || !(*cmds)->next)
-		return;
+		return ;
 	tail = *cmds;
 	while (tail && tail->next)
 	{
 		len1 = ft_strlen(tail->cmd) - 1;
 		len2 = ft_strlen(tail->next->cmd) - 1;
 		if (tail->cmd[0] != 'p' && tail->next->cmd[0] == tail->cmd[0] &&
-			len1 == len2 && tail->cmd[len1] != tail->next->cmd[len2] &&
-			tail->cmd[len1] != tail->cmd[0] &&
-			tail->next->cmd[len2] != tail->next->cmd[0])
-			{
-				if (tail->cmd[0] == 's')
-					tail->cmd = "ss";
-				else
-					tail->cmd = (len1 == 2) ? "rrr" : "rr";
-				tail->next->cmd = NULL;
-				tail = tail->next;
-			}
+		len1 == len2 && tail->cmd[len1] != tail->next->cmd[len2] &&
+		tail->cmd[len1] != tail->cmd[0] &&
+		tail->next->cmd[len2] != tail->next->cmd[0])
+		{
+			if (tail->cmd[0] == 's')
+				tail->cmd = "ss";
+			else
+				tail->cmd = (len1 == 2) ? "rrr" : "rr";
+			tail->next->cmd = NULL;
+			tail = tail->next;
+		}
 		tail = tail->next;
 	}
 }
@@ -76,7 +76,7 @@ void	print_cmds(t_cmd **cmds)
 	t_cmd *out;
 
 	if (!cmds)
-		return;
+		return ;
 	out = *cmds;
 	while (out)
 	{
@@ -86,7 +86,7 @@ void	print_cmds(t_cmd **cmds)
 			ft_putchar('\n');
 		}
 		out = out->next;
-	};
+	}
 }
 
 void	free_cmds(t_cmd **cmds)

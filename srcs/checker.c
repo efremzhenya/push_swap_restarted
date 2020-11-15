@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 23:30:51 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/31 02:56:52 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 06:25:20 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ int		main(int argc, char **argv)
 		return (write(1, "Error\n", 6));
 	}
 	read_cmds(&stack_a, &stack_b);
-	write(1, is_sorted(&stack_a) && (get_length(&stack_b) == 0) ? "OK\n" : "KO\n", 3);
-	free_stack(&stack_a);
-	free_stack(&stack_b);
-	free_cmds(&cmds);
+	if (is_sorted(&stack_a) && (get_length(&stack_b) == 0))
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+	free_all(&stack_a, &stack_b, &cmds, NULL);
 	return (0);
 }
 
@@ -44,7 +45,7 @@ void	read_cmds(t_elem **stack_a, t_elem **stack_b)
 
 	while (get_next_line(0, &raw_cmd) > 0)
 	{
-		if (!ft_strcmp(raw_cmd, "pa") || !ft_strcmp(raw_cmd , "pb") ||
+		if (!ft_strcmp(raw_cmd, "pa") || !ft_strcmp(raw_cmd, "pb") ||
 			!ft_strcmp(raw_cmd, "sa") || !ft_strcmp(raw_cmd, "sb") ||
 			!ft_strcmp(raw_cmd, "ss") || !ft_strcmp(raw_cmd, "ra") ||
 			!ft_strcmp(raw_cmd, "rb") || !ft_strcmp(raw_cmd, "rr") ||

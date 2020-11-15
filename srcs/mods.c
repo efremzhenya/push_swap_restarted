@@ -6,11 +6,11 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 03:00:13 by lseema            #+#    #+#             */
-/*   Updated: 2020/10/31 03:00:18 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 06:22:51 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int is_mode_on(char *argv)
+int		is_mode_on(char *argv)
 {
 	int text;
 	int vizualize;
@@ -29,5 +29,5 @@ int is_mode_on(char *argv)
 			argv++;
 		}
 	}
-	return text + (vizualize * 2);
+	return (text + (vizualize * 2));
 }
