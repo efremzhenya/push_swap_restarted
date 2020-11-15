@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 04:12:23 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/15 06:43:27 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 17:47:06 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	part_a(t_elem **a, t_elem **b, t_main **main, t_cmd **cmds)
 {
-	size_t	mid;
+	int		mid;
 	int		len;
 	int		i;
 
@@ -54,9 +54,9 @@ void	part_b(t_elem **a, t_elem **b, t_main **main, t_cmd **cmds)
 
 void	part_c(t_elem **a, t_elem **b, t_main **main, t_cmd **cmds)
 {
-	size_t	mid;
-	size_t	len;
-	size_t	i;
+	int		mid;
+	int		len;
+	int		i;
 
 	i = 0;
 	(*main)->max = get_max_ind(b) + 1;

@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 21:54:25 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/15 06:29:48 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 17:45:35 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_elem	*new_elem(int value)
 int		add_elem(t_elem **stack, t_elem *elem)
 {
 	t_elem	*tail;
-	t_elem	*tmp2;
 
 	if (!stack || !elem)
 		return (0);
@@ -45,10 +44,10 @@ int		add_elem(t_elem **stack, t_elem *elem)
 	return (1);
 }
 
-size_t	get_length(t_elem **stack)
+int		get_length(t_elem **stack)
 {
-	t_elem *tail;
-	size_t count;
+	t_elem	*tail;
+	int		count;
 
 	if (!stack || !*stack)
 		return (0);

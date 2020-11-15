@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 20:17:43 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/15 07:09:18 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 17:42:54 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	set_indexes_part2(t_elem **stack_a, int *arr)
 
 void	check_next(t_elem **a, t_elem **b, t_main **main, t_cmd **cmds)
 {
-	t_elem	*tail;
-
 	while ((*a)->index + 1 == (*main)->next
 		|| (*a)->next->index + 1 == (*main)->next)
 	{

@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 23:30:51 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/15 15:29:23 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 17:32:19 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int		main(int argc, char **argv)
 
 void	read_cmds(t_elem **stack_a, t_elem **stack_b, int mode)
 {
-	int		fd;
 	char	*raw_cmd;
 
 	while (get_next_line(0, &raw_cmd) > 0)
@@ -65,7 +64,6 @@ void	read_cmds(t_elem **stack_a, t_elem **stack_b, int mode)
 void	draw(t_elem **stack_a, t_elem **stack_b)
 {
 	size_t	len;
-	size_t	i;
 	t_elem	*tmpa;
 	t_elem	*tmpb;
 

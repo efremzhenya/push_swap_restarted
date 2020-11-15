@@ -6,21 +6,34 @@
 #    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/27 16:30:25 by lseema            #+#    #+#              #
-#    Updated: 2020/11/01 06:14:17 by lseema           ###   ########.fr        #
+#    Updated: 2020/11/15 18:07:31 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PUSH_SWAP = push_swap
 CHECKER = checker
-# CC = gcc -g -Wall -Wextra -Werror
-CC = gcc -g
+CC = gcc -Wall -Wextra -Werror
 SRC_DIR = srcs/
 LIBFT_DIR = libft/
 OBJ_DIR = obj/
-PS_SRCS = push_swap.c validation.c lst_management.c cmd_management.c cleaners.c\
-	ps_helpers.c ps_sort.c instructions.c mods.c main_sort.c
-CHECKER_SRCS = checker.c validation.c lst_management.c cmd_management.c cleaners.c\
-	instructions.c mods.c ps_helpers.c
+PS_SRCS = push_swap.c\
+	validation.c\
+	lst_management.c\
+	cmd_management.c\
+	cleaners.c\
+	ps_helpers.c\
+	ps_sort.c\
+	instructions.c\
+	mods.c\
+	main_sort.c
+CHECKER_SRCS = checker.c\
+	validation.c\
+	lst_management.c\
+	cmd_management.c\
+	cleaners.c\
+	instructions.c\
+	mods.c\
+	ps_helpers.c
 
 PS_OBJ = ${PS_SRCS:c=o}
 CHECKER_OBJ = ${CHECKER_SRCS:c=o}
@@ -47,5 +60,6 @@ clean:
 fclean: clean
 	@make -C $(LIBFT_DIR) fclean
 	@rm -f $(PUSH_SWAP)
+	@rm -f $(CHECKER)
 
 re: fclean all

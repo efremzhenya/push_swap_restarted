@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:51:51 by lseema            #+#    #+#             */
-/*   Updated: 2020/11/15 15:23:22 by lseema           ###   ########.fr       */
+/*   Updated: 2020/11/15 17:46:24 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef	struct		s_elem
 
 typedef	struct		s_main
 {
-	size_t			count;
-	size_t			max;
+	int				count;
+	int				max;
 	int				mode;
 	int				next;
 	int				flag;
@@ -54,7 +54,7 @@ void				free_all(t_elem **a, t_elem **b, t_cmd **cmds, t_main **m);
 void				set_indexes(t_elem **stack_a, size_t count, size_t i);
 void				set_indexes_part2(t_elem **stack_a, int *arr);
 int					is_sorted(t_elem **stack);
-size_t				get_length(t_elem **stack);
+int					get_length(t_elem **stack);
 int					is_mode_on(char *argv);
 int					start_ps(t_elem **a, t_elem **b, t_main **main, t_cmd **c);
 void				add_cmd(t_cmd **cmds, t_cmd *cmd);
@@ -76,7 +76,7 @@ void				main_sort(t_elem **s, t_elem **b, t_main **m, t_cmd **c);
 void				check_next(t_elem **a, t_elem **b, t_main **m, t_cmd **c);
 void				check_next_b(t_elem **a, t_elem **b, t_main **m, t_cmd **c);
 int					get_max_ind(t_elem **stack_a);
-int					get_flag(t_elem **stack_a, int	index);
+int					get_flag(t_elem **stack_a, int index);
 int					validate_string(char *str, t_elem **stack_a);
 void				part_a(t_elem **a, t_elem **b, t_main **main, t_cmd **cmds);
 void				part_b(t_elem **a, t_elem **b, t_main **main, t_cmd **cmds);
